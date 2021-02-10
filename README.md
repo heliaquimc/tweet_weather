@@ -1,6 +1,5 @@
 # Publicador de Clima
 
-=================
 <!--ts-->
 * [Sobre](#sobre)
 * [Pré Requisitos](#pre-requisitos)
