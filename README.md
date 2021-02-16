@@ -44,7 +44,7 @@ Os endpoints para utilização são:
 
 #### Request
 
-`POST /tweet/clima`
+`POST /api/v1/publish`
 
 ```json
 [

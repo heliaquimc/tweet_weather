@@ -13,7 +13,6 @@ group :development, :test do
   gem "openweathermap", "~> 0.2.3"
   gem "twitter", "~> 7.0"
   gem 'rspec-rails', '~> 3.8'
-  gem 'ffaker'
 end
 
 group :development do
