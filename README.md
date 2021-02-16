@@ -117,4 +117,3 @@ ou
 * [openweathermap](https://rubygems.org/gems/openweathermap/versions/0.2.3)
 * rspec-rails
 * ffaker
-* factory_bot_rails

@@ -14,7 +14,6 @@ group :development, :test do
   gem "twitter", "~> 7.0"
   gem 'rspec-rails', '~> 3.8'
   gem 'ffaker'
-  gem 'factory_bot_rails'
 end
 
 group :development do

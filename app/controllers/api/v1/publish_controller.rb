@@ -14,7 +14,7 @@ class Api::V1::PublishController < ApplicationController
             ]
 
         }
-        render json: info
+        render json: info, status: 200
     end
 
     def create
@@ -49,7 +49,7 @@ class Api::V1::PublishController < ApplicationController
                 "msg": weather,
                 "success": "tweet publicado com sucesso.",
                 "date": Time.now.strftime("%Y-%m-%d %H:%M:%S")
-            }
+            }, status: 201
         end
     end
 end
