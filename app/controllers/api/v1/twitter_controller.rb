@@ -1,4 +1,4 @@
-requite 'twitter'
+require 'twitter'
 
 class Api::V1::TwitterController < ApplicationController
     def initialize(consumer_key, consumer_secret, access_token, access_token_secret)
@@ -11,14 +11,6 @@ class Api::V1::TwitterController < ApplicationController
     end
 
     def tweet(text)
-        begin
-            @client.update(text)
-        rescue Twitter::Error::Unauthorized
-            {"error": "Não autorizado. Campo twitter_access_token ou twitter_access_token_secret com valor inválido."}
-        rescue Twitter::Error::BadRequest
-            {"error": "Não autorizado. Campo twitter_consumer_key ou twitter_consumer_key_secret com valor inválido."}
-        else
-            {"success": "Tweet publicado com sucesso."}
-        end
+        @client.update(text)
     end
 end
