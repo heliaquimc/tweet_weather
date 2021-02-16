@@ -37,13 +37,13 @@ class Api::V1::PublishController < ApplicationController
             tweet_status = twitter.tweet(weather)
 
         rescue OpenWeatherMap::Exceptions::UnknownLocation
-            render json: {"error": "Localização inválida. Campos cidade e pais com valores inválidos ou não relacionados."}
+            render json: {"error": "Localização inválida. Campos cidade e pais com valores inválidos ou não relacionados."}, status: 400
         rescue OpenWeatherMap::Exceptions::Unauthorized
-            render json: {"error": "Não autorizado. Campo open_weather_map_key com valor inválido."}
+            render json: {"error": "Não autorizado. Campo open_weather_map_key com valor inválido."}, status: 403
         rescue Twitter::Error::Unauthorized
-            render json: {"error": "Não autorizado. Campos twitter_access_token, twitter_access_token_secret, twitter_consumer_key ou twitter_consumer_key_secret com valores inválidos."}
+            render json: {"error": "Não autorizado. Campos twitter_access_token, twitter_access_token_secret, twitter_consumer_key ou twitter_consumer_key_secret com valores inválidos."}, status: 403
         rescue Twitter::Error::BadRequest
-            render json: {"error": "Não autorizado. Campos twitter_access_token, twitter_access_token_secret, twitter_consumer_key ou twitter_consumer_key_secret com valores inválidos."}
+            render json: {"error": "Não autorizado. Campos twitter_access_token, twitter_access_token_secret, twitter_consumer_key ou twitter_consumer_key_secret com valores inválidos."}, status: 400
         else
             render json: {
                 "msg": weather,

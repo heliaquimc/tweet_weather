@@ -1,4 +1,4 @@
-# Publicador de Clima
+# Tweet Weather
 
 <!--ts-->
 * [Sobre](#sobre)
@@ -6,12 +6,13 @@
 * [Instalação](#instalacao)
 * [Como usar](#como-usar)
 * [Gems](#gems)
-* [Tests](#testes)
 <!--ts-->
 
 ## Sobre
 
-Publique as informações de clima de determinada região no Twitter. Informações do dia e previsões para os dias posteriores.
+Publique as informações de clima de determinada região no Twitter utilizando as API's do OpenWeatherMap e Twitter. Informações do dia e previsões para os dias posteriores.
+
+Este projeto faz parte do desafio proposto pela empresa [Caiena](https://caiena.net/).
 
 ## Pré Requisitos
 
@@ -23,10 +24,10 @@ Publique as informações de clima de determinada região no Twitter. Informaç�
 
 ```bash
 # Clone este repositório
-$ git clone <https://github.com/>
+$ git clone git@github.com:heliaquimc/tweet_weather.git
 
 # Acesse a pasta do projeto
-$ cd pasta
+$ cd tweet_weather
 
 # Instale as dependências
 $ bundle install
@@ -46,15 +47,15 @@ Os endpoints para utilização são:
 `POST /tweet/clima`
 
 ```json
-{
-    "cidade": "Campinas",
-    "pais": "BR",
-    "open_weather_map_key": "key_weather_map",
-    "twitter_consumer_key": "key_weather_map",
-    "twitter_consumer_key_secret": "key_weather_map",
-    "twitter_access_token": "key_weather_map",
-    "twitter_access_token_secret": "key_weather_map",
-}
+[
+    "cidade",
+    "pais",
+    "open_weather_map_key",
+    "twitter_consumer_key",
+    "twitter_consumer_key_secret",
+    "twitter_access_token",
+    "twitter_access_token_secret",
+]
 ```
 
 Observações:
@@ -72,9 +73,41 @@ Observações:
 
 ```json
 {
-    "tweet": "<temperatura> e <clima> em <cidade> em <data>. Média para os próximos dias: <temperatura> em <data>, ...",
-    "date": "timestamp",
-    "user": "@user"
+    "msg": "<temperatura> e <clima> em <cidade> em <data>. Média para os próximos dias: <temperatura> em <data>, ...",
+    "success": "tweet publicado com sucesso.",
+    "date": "YYYY-MM-DD HH:MM:SS",
+}
+```
+
+`400` - Bad Request
+
+```json
+{
+    "error": "Localização inválida. Campos cidade e pais com valores inválidos ou não relacionados."
+}
+```
+
+ou
+
+```json
+{
+    "error": "Não autorizado. Campos twitter_access_token, twitter_access_token_secret, twitter_consumer_key ou twitter_consumer_key_secret com valores inválidos."
+}
+```
+
+`403` - Forbidden
+
+```json
+{
+    "error": "Não autorizado. Campo open_weather_map_key com valor inválido."
+}
+```
+
+ou
+
+```json
+{
+    "error": "Não autorizado. Campos twitter_access_token, twitter_access_token_secret, twitter_consumer_key ou twitter_consumer_key_secret com valores inválidos."
 }
 ```
 
@@ -82,3 +115,6 @@ Observações:
 
 * [twitter](https://rubygems.org/gems/twitter/versions/6.2.0)
 * [openweathermap](https://rubygems.org/gems/openweathermap/versions/0.2.3)
+* rspec-rails
+* ffaker
+* factory_bot_rails
